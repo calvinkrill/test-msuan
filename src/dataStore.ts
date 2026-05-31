@@ -15,67 +15,13 @@ import {
 } from './types';
 
 // Let's create an elegant initial dataset to populate the MSN Community Hub.
-const INITIAL_PROFILES: UserProfile[] = [
-  {
-    uid: "admin_user",
-    name: "Dr. Alonto Domocao",
-    email: "demo@msumain.edu.ph",
-    username: "@msu_demo",
-    bio: "Demo Account for ONEMSU. Experience the full capabilities of our student community platform.",
-    photoURL: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=150",
-    coverURL: "https://images.unsplash.com/photo-1507842217343-583bb7270b66?w=800",
-    campus: "MSU Main",
-    courseAndYear: "Demo Account",
-    role: "demo",
-    isVerified: true,
-    achievements: ["Demo Account"],
-    privacySettings: { profileVisibility: "public", messagePermission: "everyone", activityLogPublic: true }
-  },
-];
+const INITIAL_PROFILES: UserProfile[] = [];
 
-const INITIAL_POSTS: Post[] = [
-  {
-    id: "post_1",
-    userId: "admin_user",
-    userName: "Dr. Alonto Domocao",
-    userPhoto: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=150",
-    userCampus: "MSU Main",
-    userRole: "admin",
-    isVerifiedUser: true,
-    content: "Welcome, scholars, to ONEMSU! This digital gateway unites our 8 glorious campuses across Mindanao and Sulu. Connect with colleagues, explore academic libraries, share research and coordinate local activities. Together, we continue the legacy of peace and learning! #ONEMSU #MSULegacy",
-    mediaUrl: "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=800",
-    isPinned: true,
-    hashtags: ["ONEMSU", "MSULegacy"],
-    shares: 42,
-    reactions: [],
-    comments: [],
-    timestamp: Date.now() - 360000000
-  },
-];
+const INITIAL_POSTS: Post[] = [];
 
 const INITIAL_STORIES: Story[] = [];
 
-const INITIAL_GROUPS: GroupChat[] = [
-  {
-    id: "group_1",
-    name: "MSU Hackathon 2026",
-    description: "Global team matching and project sharing workspace for student builders.",
-    image: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=200",
-    members: ["admin_user"],
-    moderators: ["admin_user"],
-    messages: [
-      {
-        id: "gm_1",
-        chatId: "group_1",
-        senderId: "admin_user",
-        senderName: "Dr. Alonto Domocao",
-        text: "Good luck with team formations, builders! Make the Alonto legacy proud.",
-        timestamp: Date.now() - 360000000,
-        seen: true
-      }
-    ]
-  }
-];
+const INITIAL_GROUPS: GroupChat[] = [];
 
 class SocialDataStore {
   private keyPrefix = "onemsu_store_";
@@ -127,9 +73,7 @@ class SocialDataStore {
     this.friendRequests = this.load("friend_requests", []);
     
     // Connections Mapping
-    const defaultConnections: Record<string, UserConnections> = {
-      admin_user: { friends: [], following: [], followers: [], blocked: [] }
-    };
+    const defaultConnections: Record<string, UserConnections> = {};
     this.connections = this.load("connections", defaultConnections);
 
     // Messages
