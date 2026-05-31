@@ -1,11 +1,6 @@
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
-    
-    // Global Safety Net (Pillar 1)
-    match /{document=**} {
-      allow read, write: if false;
-    }
 
     // Primitive Definitions & Helpers (Pillar 3)
     function isValidId(id) {
@@ -57,6 +52,11 @@ service cloud.firestore {
         allow update: if false; // Enrollments are immutable, only drop/delete is allowed
         allow delete: if isOwner(userId) && isValidId(enrollmentId);
       }
+    }
+
+    // Global Safety Net (Pillar 1) - Deny all unmatched paths
+    match /{document=**} {
+      allow read, write: if false;
     }
   }
 }

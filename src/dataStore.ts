@@ -17,63 +17,48 @@ import {
 // Let's create an elegant initial dataset to populate the MSN Community Hub.
 const INITIAL_PROFILES: UserProfile[] = [
   {
-    uid: "admin_user",
-    name: "Dr. Alonto Domocao",
-    email: "ad_system@msumain.edu.ph",
-    username: "@msu_admin",
-    bio: "Chief System Administrator for ONEMSU. Forging peace and scholarly excellence throughout the Mindanao region.",
-    photoURL: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=150",
+    uid: "test_user_1",
+    name: "ONEMSU",
+    email: "info@onemsu.edu.ph",
+    username: "@onemsu",
+    bio: "Welcome to ONEMSU - The unified student community hub connecting all 8 MSU campuses across Mindanao and Sulu.",
+    photoURL: "https://cdn.builder.io/api/v1/image/assets%2F23368e21ff6f469fbe3b6cd7a12f765a%2F935b37ec15f04e76b6201798aa1bad97?format=webp&width=200&height=300",
     coverURL: "https://images.unsplash.com/photo-1507842217343-583bb7270b66?w=800",
     campus: "MSU Main",
-    courseAndYear: "Faculty of Social Sciences",
-    role: "admin",
+    courseAndYear: "Community Platform",
+    role: "community",
     isVerified: true,
-    achievements: ["System Founder", "Peace Advocate"],
+    achievements: ["Official Community", "Campus Connection"],
     privacySettings: { profileVisibility: "public", messagePermission: "everyone", activityLogPublic: true }
   },
   {
-    uid: "user_marawi_1",
-    name: "Sittie Fatima",
-    email: "sittie.fatima@msumain.edu.ph",
-    username: "@sittie_fatima",
-    bio: "Empowered BS Computer Science Junior at MSU Marawi. Fascinated by AI, game design, and local Maranao craft weave. ✨",
-    photoURL: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150",
-    coverURL: "https://images.unsplash.com/photo-1557683316-973673baf926?w=800",
-    campus: "MSU Main",
-    courseAndYear: "BS Computer Science - 3rd Year",
-    role: "student",
-    isVerified: true,
-    achievements: ["Honor Student", "Code Queen 2026"],
-    privacySettings: { profileVisibility: "public", messagePermission: "everyone", activityLogPublic: true }
-  },
-  {
-    uid: "user_iit_1",
-    name: "Kyle Christian",
-    email: "kyle.christian@g.msuiit.edu.ph",
-    username: "@kyle_tech",
-    bio: "Robotics Major and Innovator at MSU-IIT. Playing drums, programming, and making dreams into reality.",
-    photoURL: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150",
+    uid: "test_user_2",
+    name: "Ahmed Hassan",
+    email: "ahmed.hassan@msuiit.edu.ph",
+    username: "@ahmed_tech",
+    bio: "Electronics Engineering student at MSU-IIT. Building the future of technology.",
+    photoURL: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150",
     coverURL: "https://images.unsplash.com/photo-1518770660439-4636190af475?w=800",
     campus: "MSU IIT",
-    courseAndYear: "BS Electronics Engineering - 4th Year",
+    courseAndYear: "BS Electronics Engineering - 3rd Year",
     role: "student",
     isVerified: false,
-    achievements: ["Robotics Champion"],
-    privacySettings: { profileVisibility: "friends", messagePermission: "friends", activityLogPublic: true }
+    achievements: ["Tech Innovator"],
+    privacySettings: { profileVisibility: "public", messagePermission: "everyone", activityLogPublic: true }
   },
   {
-    uid: "user_gensan_1",
-    name: "Datu Fahad",
-    email: "fahad.datu@msugensan.edu.ph",
-    username: "@fahad_datu",
-    bio: "President of the Gensan Debating Society. Focused on international law, regional policy and tuna farming research.",
-    photoURL: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150",
+    uid: "test_user_3",
+    name: "Prof. Juan Carlos",
+    email: "juan.carlos@msumain.edu.ph",
+    username: "@prof_juan",
+    bio: "Faculty member at MSU Main. Dedicated to academic excellence and student mentorship.",
+    photoURL: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150",
     coverURL: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800",
-    campus: "MSU Gensan",
-    courseAndYear: "BA Political Science - 4th Year",
-    role: "student",
+    campus: "MSU Main",
+    courseAndYear: "Faculty - Department of Sciences",
+    role: "faculty",
     isVerified: true,
-    achievements: ["Campus Leader", "Best Debater '25"],
+    achievements: ["Educator", "Mentor"],
     privacySettings: { profileVisibility: "public", messagePermission: "everyone", activityLogPublic: true }
   }
 ];
@@ -81,114 +66,97 @@ const INITIAL_PROFILES: UserProfile[] = [
 const INITIAL_POSTS: Post[] = [
   {
     id: "post_1",
-    userId: "admin_user",
-    userName: "Dr. Alonto Domocao",
-    userPhoto: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=150",
+    userId: "test_user_1",
+    userName: "Maria Santos",
+    userPhoto: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150",
     userCampus: "MSU Main",
-    userRole: "admin",
+    userRole: "student",
     isVerifiedUser: true,
-    content: "Welcome, scholars, to ONEMSU! This digital gateway unites our 8 glorious campuses across Mindanao and Sulu. Connect with colleagues, explore academic libraries, share research and coordinate local activities. Together, we continue the legacy of peace and learning! #ONEMSU #MSULegacy",
-    mediaUrl: "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=800",
-    isPinned: true,
-    hashtags: ["ONEMSU", "MSULegacy"],
-    shares: 42,
+    content: "Excited to announce that our web development project has been selected for the MSU Innovation Summit! Looking forward to sharing our work with the community. #ONEMSU #Innovation",
+    mediaUrl: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=800",
+    hashtags: ["ONEMSU", "Innovation"],
+    shares: 8,
     reactions: [
-      { userId: "user_marawi_1", userName: "Sittie Fatima", type: "love" },
-      { userId: "user_iit_1", userName: "Kyle Christian", type: "like" },
-      { userId: "user_gensan_1", userName: "Datu Fahad", type: "wow" }
+      { userId: "test_user_2", userName: "Ahmed Hassan", type: "like" },
+      { userId: "test_user_3", userName: "Prof. Juan Carlos", type: "love" }
     ],
     comments: [
       {
         id: "comment_1_1",
         postId: "post_1",
-        userId: "user_marawi_1",
-        userName: "Sittie Fatima",
-        userPhoto: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150",
-        content: "What a beautiful initiative! The student council of Marawi fully supports ONEMSU.",
-        timestamp: Date.now() - 120000000
+        userId: "test_user_3",
+        userName: "Prof. Juan Carlos",
+        userPhoto: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150",
+        content: "Congratulations Maria! This is outstanding work. Keep pushing the boundaries of innovation.",
+        timestamp: Date.now() - 3600000
       }
     ],
-    timestamp: Date.now() - 360000000
+    timestamp: Date.now() - 7200000
   },
   {
     id: "post_2",
-    userId: "user_marawi_1",
-    userName: "Sittie Fatima",
-    userPhoto: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150",
-    userCampus: "MSU Main",
+    userId: "test_user_2",
+    userName: "Ahmed Hassan",
+    userPhoto: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150",
+    userCampus: "MSU IIT",
     userRole: "student",
-    isVerifiedUser: true,
-    content: "Just submitted my research blueprint for the Marawi Tech-Weave project! We are combining tribal designs with interactive LED textile displays. Any electronics wizards in MSU-IIT willing to collaborate? #TechWeave #MSUIIT #MSUMain",
-    mediaUrl: "https://images.unsplash.com/photo-1508962914676-134849a727f0?w=800",
-    hashtags: ["TechWeave", "MSUIIT", "MSUMain"],
-    shares: 11,
+    isVerifiedUser: false,
+    content: "Just completed my embedded systems project! Building IoT solutions to solve real-world problems. Shoutout to everyone who supported me throughout this journey. #MSUIITProud",
+    mediaUrl: "https://images.unsplash.com/photo-1555949519-2f4927c01cb8?w=800",
+    hashtags: ["MSUIITProud", "IoT"],
+    shares: 5,
     reactions: [
-      { userId: "user_iit_1", userName: "Kyle Christian", type: "like" },
-      { userId: "user_gensan_1", userName: "Datu Fahad", type: "love" }
+      { userId: "test_user_1", userName: "Maria Santos", type: "wow" }
     ],
-    comments: [
-      {
-        id: "comment_2_1",
-        postId: "post_2",
-        userId: "user_iit_1",
-        userName: "Kyle Christian",
-        userPhoto: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150",
-        content: "This sounds absolutely stellar, Sittie! Message me in the DM. I can help with the Arduino microcontrollers. @sittie_fatima",
-        timestamp: Date.now() - 80000000
-      }
+    comments: [],
+    timestamp: Date.now() - 14400000
+  },
+  {
+    id: "post_3",
+    userId: "test_user_3",
+    userName: "Prof. Juan Carlos",
+    userPhoto: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150",
+    userCampus: "MSU Main",
+    userRole: "faculty",
+    isVerifiedUser: true,
+    content: "Reminder: Our weekly office hours are Tuesdays and Thursdays from 2-4 PM. Come discuss your research projects, coursework, or anything else on your mind. #MentorshipMatters",
+    hashtags: ["MentorshipMatters"],
+    shares: 2,
+    reactions: [
+      { userId: "test_user_1", userName: "Maria Santos", type: "like" }
     ],
-    timestamp: Date.now() - 100000000
+    comments: [],
+    timestamp: Date.now() - 21600000
   }
 ];
 
-const INITIAL_STORIES: Story[] = [
-  {
-    id: "story_1",
-    userId: "user_marawi_1",
-    userName: "Sittie Fatima",
-    userPhoto: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150",
-    imageUrl: "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=400",
-    timestamp: Date.now() - 10 * 60000,
-    viewers: ["admin_user", "user_iit_1"],
-    reactions: [{ userId: "user_iit_1", reaction: "❤️" }]
-  },
-  {
-    id: "story_2",
-    userId: "user_iit_1",
-    userName: "Kyle Christian",
-    userPhoto: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150",
-    imageUrl: "https://images.unsplash.com/photo-1520333789090-1afc82db536a?w=400",
-    timestamp: Date.now() - 2 * 3600000,
-    viewers: ["user_marawi_1"],
-    reactions: [{ userId: "user_marawi_1", reaction: "🔥" }]
-  }
-];
+const INITIAL_STORIES: Story[] = [];
 
 const INITIAL_GROUPS: GroupChat[] = [
   {
     id: "group_1",
-    name: "MSU Hackathon 2026",
-    description: "Global team matching and project sharing workspace for student builders.",
-    image: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=200",
-    members: ["admin_user", "user_marawi_1", "user_iit_1", "user_gensan_1"],
-    moderators: ["admin_user", "user_marawi_1"],
+    name: "MSU Web Developers Club",
+    description: "A community for students interested in web development and modern technologies.",
+    image: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=200",
+    members: ["test_user_1", "test_user_2", "test_user_3"],
+    moderators: ["test_user_1"],
     messages: [
       {
         id: "gm_1",
         chatId: "group_1",
-        senderId: "admin_user",
-        senderName: "Dr. Alonto Domocao",
-        text: "Good luck with team formations, builders! Make the Alonto legacy proud.",
-        timestamp: Date.now() - 360000000,
+        senderId: "test_user_1",
+        senderName: "Maria Santos",
+        text: "Welcome everyone! Looking forward to collaborating with all of you on exciting projects.",
+        timestamp: Date.now() - 86400000,
         seen: true
       },
       {
         id: "gm_2",
         chatId: "group_1",
-        senderId: "user_marawi_1",
-        senderName: "Sittie Fatima",
-        text: "Thanks Dr. Alonto! Looking for coders skilled in full-stack setups.",
-        timestamp: Date.now() - 180000000,
+        senderId: "test_user_2",
+        senderName: "Ahmed Hassan",
+        text: "Great to be part of this group! Let's build something amazing together.",
+        timestamp: Date.now() - 64800000,
         seen: true
       }
     ]
@@ -239,101 +207,33 @@ class SocialDataStore {
   }
 
   private initData() {
+    // Clear old cached data to force fresh load
+    const cacheVersion = localStorage.getItem(this.keyPrefix + "cache_version");
+    if (cacheVersion !== "v2") {
+      localStorage.clear();
+      localStorage.setItem(this.keyPrefix + "cache_version", "v2");
+    }
+
     this.profiles = this.load("profiles", INITIAL_PROFILES);
     this.posts = this.load("posts", INITIAL_POSTS);
     this.stories = this.load("stories", INITIAL_STORIES);
-    this.friendRequests = this.load("friend_requests", [
-      {
-        id: "req_1",
-        senderId: "user_gensan_1",
-        senderName: "Datu Fahad",
-        senderCampus: "MSU Gensan",
-        senderPhoto: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150",
-        receiverId: "user_marawi_1",
-        timestamp: Date.now() - 50 * 60000,
-        status: "pending"
-      }
-    ]);
+    this.friendRequests = this.load("friend_requests", []);
     
     // Connections Mapping
-    const defaultConnections: Record<string, UserConnections> = {
-      admin_user: { friends: ["user_marawi_1"], following: ["user_marawi_1"], followers: [], blocked: [] },
-      user_marawi_1: { friends: ["admin_user"], following: ["admin_user"], followers: ["admin_user"], blocked: [] },
-      user_iit_1: { friends: [], following: ["user_marawi_1"], followers: [], blocked: [] },
-      user_gensan_1: { friends: [], following: [], followers: [], blocked: [] }
-    };
+    const defaultConnections: Record<string, UserConnections> = {};
     this.connections = this.load("connections", defaultConnections);
 
     // Messages
     this.directMessages = this.load("messages", [
-      {
-        id: "m_1",
-        chatId: "admin_user_user_marawi_1",
-        senderId: "admin_user",
-        senderName: "Dr. Alonto Domocao",
-        text: "Please send the student council agenda for next week's campus board meeting.",
-        timestamp: Date.now() - 72000000,
-        seen: true
-      },
-      {
-        id: "m_2",
-        chatId: "admin_user_user_marawi_1",
-        senderId: "user_marawi_1",
-        senderName: "Sittie Fatima",
-        text: "Got it Dr. Alonto! Designing a comprehensive summary right now.",
-        timestamp: Date.now() - 36000000,
-        seen: false
-      }
     ]);
 
     this.groups = this.load("groups", INITIAL_GROUPS);
     
-    this.notifications = this.load("notifications", [
-      {
-        id: "notif_1",
-        receiverId: "user_marawi_1",
-        senderId: "user_gensan_1",
-        senderName: "Datu Fahad",
-        senderPhoto: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150",
-        type: "friend_request",
-        title: "Friend Request",
-        body: "Datu Fahad from MSU Gensan sent you a friend request.",
-        targetId: "req_1",
-        seen: false,
-        timestamp: Date.now() - 50 * 60000
-      }
-    ]);
+    this.notifications = this.load("notifications", []);
 
-    this.reports = this.load("reports", [
-      {
-        id: "rep_1",
-        reporterId: "user_iit_1",
-        reporterName: "Kyle Christian",
-        contentType: "post",
-        contentId: "post_2",
-        reportedId: "user_marawi_1",
-        details: "False research information claim.",
-        status: "pending",
-        timestamp: Date.now() - 1000 * 3600
-      }
-    ]);
+    this.reports = this.load("reports", []);
 
-    this.activityLogs = this.load("activity_logs", [
-      {
-        id: "act_1",
-        userId: "user_marawi_1",
-        actionType: "login",
-        description: "Authenticated successfully from Marawi network.",
-        timestamp: Date.now() - 3600000
-      },
-      {
-        id: "act_2",
-        userId: "user_marawi_1",
-        actionType: "post",
-        description: "Published a post on Tech-Weave design project.",
-        timestamp: Date.now() - 2400000
-      }
-    ]);
+    this.activityLogs = this.load("activity_logs", []);
 
     this.settings = this.load("settings", {
       notificationsEnabled: true,
@@ -342,8 +242,8 @@ class SocialDataStore {
       primaryColor: "#f5d36b"
     });
 
-    // Default active user is Dr. Alonto (for super admin visibility out of the box)
-    this.activeUser = this.profiles[1]; // sittie fatima is a great test student!
+    // Default active user is the first profile
+    this.activeUser = this.profiles.length > 0 ? this.profiles[0] : null;
   }
 
   public syncAll() {
