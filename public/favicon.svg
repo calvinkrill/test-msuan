@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
+  <defs>
+    <linearGradient id="gold-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stopColor="#f9e7a3" />
+      <stop offset="50%" stopColor="#f5d36b" />
+      <stop offset="100%" stopColor="#b99740" />
+    </linearGradient>
+    <filter id="shadow">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#000000" flood-opacity="0.5"/>
+    </filter>
+  </defs>
+  <rect width="100" height="100" rx="24" fill="#0a0502" />
+  <circle cx="50" cy="50" r="41" fill="none" stroke="url(#gold-grad)" strokeWidth="3" />
+  <path 
+    d="M50 20 L80 80 L20 80 Z" 
+    fill="none" 
+    stroke="url(#gold-grad)" 
+    strokeWidth="5" 
+    strokeLinejoin="round" 
+    filter="url(#shadow)"
+  />
+  <text x="50" y="66" textAnchor="middle" fill="url(#gold-grad)" fontSize="11" fontWeight="900" fontFamily="serif" letter-spacing="1">MSU</text>
+</svg>

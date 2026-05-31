@@ -1,0 +1,62 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // Global Safety Net (Pillar 1)
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    // Primitive Definitions & Helpers (Pillar 3)
+    function isValidId(id) {
+      return id is string && id.size() <= 128 && id.matches('^[a-zA-Z0-9_\\-]+$');
+    }
+    
+    function incoming() {
+      return request.resource.data;
+    }
+    
+    function existing() {
+      return resource.data;
+    }
+    
+    function isSignedIn() {
+      return request.auth != null;
+    }
+    
+    function isOwner(userId) {
+      return isSignedIn() && request.auth.uid == userId;
+    }
+
+    // Validation Blueprint for User Profiles (Pillar 2 & Pillar 6)
+    function isValidUser(data) {
+      return data.uid == request.auth.uid
+        && data.name is string && data.name.size() >= 1 && data.name.size() <= 200
+        && data.email is string && data.email.size() >= 3 && data.email.size() <= 200;
+    }
+
+    // Validation Blueprint for Enrollments (Pillar 5 & Pillar 13)
+    function isValidEnrollment(data) {
+      return data.courseName is string && data.courseName.size() >= 1 && data.courseName.size() <= 150
+        && data.enrolledAt == request.time;
+    }
+
+    // Path Rules for Users (Pillar 6: PII Isolation & Owner Restricted)
+    match /users/{userId} {
+      allow read: if isOwner(userId);
+      allow create: if isOwner(userId) && isValidUser(incoming());
+      allow update: if isOwner(userId) && isValidUser(incoming())
+        && incoming().uid == existing().uid
+        && incoming().email == existing().email; // Immortal field check
+      allow delete: if false; // Profiles cannot be deleted client-side
+
+      // Sub-collection rule (Pillar 1: Relational Sync / Master Gate)
+      match /enrollments/{enrollmentId} {
+        allow read, list: if isOwner(userId);
+        allow create: if isOwner(userId) && isValidId(enrollmentId) && isValidEnrollment(incoming());
+        allow update: if false; // Enrollments are immutable, only drop/delete is allowed
+        allow delete: if isOwner(userId) && isValidId(enrollmentId);
+      }
+    }
+  }
+}

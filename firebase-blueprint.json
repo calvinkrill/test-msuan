@@ -1,0 +1,62 @@
+{
+  "entities": {
+    "User": {
+      "title": "User",
+      "description": "User profile representation in the unified database.",
+      "type": "object",
+      "properties": {
+        "uid": {
+          "type": "string",
+          "description": "The unique user ID matching request.auth.uid"
+        },
+        "name": {
+          "type": "string",
+          "description": "The full name of the user"
+        },
+        "email": {
+          "type": "string",
+          "description": "The verified Gmail address of the user"
+        },
+        "photoURL": {
+          "type": "string",
+          "description": "Optional profile picture URL from Google"
+        }
+      },
+      "required": [
+        "uid",
+        "name",
+        "email"
+      ]
+    },
+    "Enrollment": {
+      "title": "Enrollment",
+      "description": "A course enrollment created by the user.",
+      "type": "object",
+      "properties": {
+        "courseName": {
+          "type": "string",
+          "description": "Name of the enrolled course"
+        },
+        "enrolledAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The timestamp when enrolled"
+        }
+      },
+      "required": [
+        "courseName",
+        "enrolledAt"
+      ]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "User",
+      "description": "Primary user profile storage mapped by UID"
+    },
+    "/users/{userId}/enrollments/{enrollmentId}": {
+      "schema": "Enrollment",
+      "description": "Sub-collection tracking each user's enrolled courses"
+    }
+  }
+}

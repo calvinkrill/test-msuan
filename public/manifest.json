@@ -1,0 +1,16 @@
+{
+  "name": "ONEMSU Unified Portal",
+  "short_name": "ONEMSU",
+  "description": "The premium, unified portal for Mindanao State University students, faculty, and alumni across all campuses.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0a0502",
+  "theme_color": "#f5d36b",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}
