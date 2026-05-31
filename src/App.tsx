@@ -150,29 +150,11 @@ const SPARKLES = [
 // --- Components ---
 
 const Logo = () => (
-  <svg viewBox="0 0 100 100" className="w-full h-full">
-    <defs>
-      <linearGradient id="logo-grad" x1="0%" y1="0%" x2="100%" y2="100%">
-        <stop offset="0%" stopColor="#f9e7a3" />
-        <stop offset="50%" stopColor="#f5d36b" />
-        <stop offset="100%" stopColor="#b99740" />
-      </linearGradient>
-      <filter id="glow">
-        <feGaussianBlur stdDeviation="2" result="blur" />
-        <feComposite in="SourceGraphic" in2="blur" operator="over" />
-      </filter>
-    </defs>
-    <circle cx="50" cy="50" r="45" fill="none" stroke="url(#logo-grad)" strokeWidth="2" />
-    <path 
-      d="M50 15 L85 85 L15 85 Z" 
-      fill="none" 
-      stroke="url(#logo-grad)" 
-      strokeWidth="4" 
-      strokeLinejoin="round" 
-      filter="url(#glow)"
-    />
-    <text x="50" y="65" textAnchor="middle" fill="url(#logo-grad)" fontSize="12" fontWeight="bold" fontFamily="serif">MSU</text>
-  </svg>
+  <img
+    src="https://cdn.builder.io/api/v1/image/assets%2F23368e21ff6f469fbe3b6cd7a12f765a%2F935b37ec15f04e76b6201798aa1bad97?format=webp&width=200&height=300"
+    alt="ONEMSU Logo"
+    className="w-full h-full object-contain"
+  />
 );
 
 export default function App() {
