@@ -15,13 +15,153 @@ import {
 } from './types';
 
 // Let's create an elegant initial dataset to populate the MSN Community Hub.
-const INITIAL_PROFILES: UserProfile[] = [];
+const INITIAL_PROFILES: UserProfile[] = [
+  {
+    uid: "test_user_1",
+    name: "Maria Santos",
+    email: "maria.santos@msumain.edu.ph",
+    username: "@maria_santos",
+    bio: "BS Computer Science student at MSU Main. Passionate about web development and AI.",
+    photoURL: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150",
+    coverURL: "https://images.unsplash.com/photo-1557683316-973673baf926?w=800",
+    campus: "MSU Main",
+    courseAndYear: "BS Computer Science - 2nd Year",
+    role: "student",
+    isVerified: true,
+    achievements: ["Active Member", "Campus Scholar"],
+    privacySettings: { profileVisibility: "public", messagePermission: "everyone", activityLogPublic: true }
+  },
+  {
+    uid: "test_user_2",
+    name: "Ahmed Hassan",
+    email: "ahmed.hassan@msuiit.edu.ph",
+    username: "@ahmed_tech",
+    bio: "Electronics Engineering student at MSU-IIT. Building the future of technology.",
+    photoURL: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150",
+    coverURL: "https://images.unsplash.com/photo-1518770660439-4636190af475?w=800",
+    campus: "MSU IIT",
+    courseAndYear: "BS Electronics Engineering - 3rd Year",
+    role: "student",
+    isVerified: false,
+    achievements: ["Tech Innovator"],
+    privacySettings: { profileVisibility: "public", messagePermission: "everyone", activityLogPublic: true }
+  },
+  {
+    uid: "test_user_3",
+    name: "Prof. Juan Carlos",
+    email: "juan.carlos@msumain.edu.ph",
+    username: "@prof_juan",
+    bio: "Faculty member at MSU Main. Dedicated to academic excellence and student mentorship.",
+    photoURL: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150",
+    coverURL: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800",
+    campus: "MSU Main",
+    courseAndYear: "Faculty - Department of Sciences",
+    role: "faculty",
+    isVerified: true,
+    achievements: ["Educator", "Mentor"],
+    privacySettings: { profileVisibility: "public", messagePermission: "everyone", activityLogPublic: true }
+  }
+];
 
-const INITIAL_POSTS: Post[] = [];
+const INITIAL_POSTS: Post[] = [
+  {
+    id: "post_1",
+    userId: "test_user_1",
+    userName: "Maria Santos",
+    userPhoto: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150",
+    userCampus: "MSU Main",
+    userRole: "student",
+    isVerifiedUser: true,
+    content: "Excited to announce that our web development project has been selected for the MSU Innovation Summit! Looking forward to sharing our work with the community. #ONEMSU #Innovation",
+    mediaUrl: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=800",
+    hashtags: ["ONEMSU", "Innovation"],
+    shares: 8,
+    reactions: [
+      { userId: "test_user_2", userName: "Ahmed Hassan", type: "like" },
+      { userId: "test_user_3", userName: "Prof. Juan Carlos", type: "love" }
+    ],
+    comments: [
+      {
+        id: "comment_1_1",
+        postId: "post_1",
+        userId: "test_user_3",
+        userName: "Prof. Juan Carlos",
+        userPhoto: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150",
+        content: "Congratulations Maria! This is outstanding work. Keep pushing the boundaries of innovation.",
+        timestamp: Date.now() - 3600000
+      }
+    ],
+    timestamp: Date.now() - 7200000
+  },
+  {
+    id: "post_2",
+    userId: "test_user_2",
+    userName: "Ahmed Hassan",
+    userPhoto: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150",
+    userCampus: "MSU IIT",
+    userRole: "student",
+    isVerifiedUser: false,
+    content: "Just completed my embedded systems project! Building IoT solutions to solve real-world problems. Shoutout to everyone who supported me throughout this journey. #MSUIITProud",
+    mediaUrl: "https://images.unsplash.com/photo-1555949519-2f4927c01cb8?w=800",
+    hashtags: ["MSUIITProud", "IoT"],
+    shares: 5,
+    reactions: [
+      { userId: "test_user_1", userName: "Maria Santos", type: "wow" }
+    ],
+    comments: [],
+    timestamp: Date.now() - 14400000
+  },
+  {
+    id: "post_3",
+    userId: "test_user_3",
+    userName: "Prof. Juan Carlos",
+    userPhoto: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150",
+    userCampus: "MSU Main",
+    userRole: "faculty",
+    isVerifiedUser: true,
+    content: "Reminder: Our weekly office hours are Tuesdays and Thursdays from 2-4 PM. Come discuss your research projects, coursework, or anything else on your mind. #MentorshipMatters",
+    hashtags: ["MentorshipMatters"],
+    shares: 2,
+    reactions: [
+      { userId: "test_user_1", userName: "Maria Santos", type: "like" }
+    ],
+    comments: [],
+    timestamp: Date.now() - 21600000
+  }
+];
 
 const INITIAL_STORIES: Story[] = [];
 
-const INITIAL_GROUPS: GroupChat[] = [];
+const INITIAL_GROUPS: GroupChat[] = [
+  {
+    id: "group_1",
+    name: "MSU Web Developers Club",
+    description: "A community for students interested in web development and modern technologies.",
+    image: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=200",
+    members: ["test_user_1", "test_user_2", "test_user_3"],
+    moderators: ["test_user_1"],
+    messages: [
+      {
+        id: "gm_1",
+        chatId: "group_1",
+        senderId: "test_user_1",
+        senderName: "Maria Santos",
+        text: "Welcome everyone! Looking forward to collaborating with all of you on exciting projects.",
+        timestamp: Date.now() - 86400000,
+        seen: true
+      },
+      {
+        id: "gm_2",
+        chatId: "group_1",
+        senderId: "test_user_2",
+        senderName: "Ahmed Hassan",
+        text: "Great to be part of this group! Let's build something amazing together.",
+        timestamp: Date.now() - 64800000,
+        seen: true
+      }
+    ]
+  }
+];
 
 class SocialDataStore {
   private keyPrefix = "onemsu_store_";
@@ -95,8 +235,8 @@ class SocialDataStore {
       primaryColor: "#f5d36b"
     });
 
-    // Default active user is Dr. Alonto (for super admin visibility out of the box)
-    this.activeUser = this.profiles[0]; // admin user
+    // Default active user is the first profile
+    this.activeUser = this.profiles.length > 0 ? this.profiles[0] : null;
   }
 
   public syncAll() {
