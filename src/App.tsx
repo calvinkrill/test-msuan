@@ -1007,36 +1007,9 @@ export default function App() {
                   {error}
                 </div>
               )}
-              
-              <button 
-                onClick={handleGoogleLogin}
-                className="w-full mb-6 py-3.5 rounded-xl font-bold bg-white text-black hover:bg-gray-100 transition-colors flex items-center justify-center gap-3 shadow-lg shadow-white/5 cursor-pointer text-sm"
-              >
-                <svg viewBox="0 0 24 24" className="w-5 h-5">
-                  <path
-                    fill="#EA4335"
-                    d="M12 5.04c1.66 0 3.2.57 4.38 1.69l3.27-3.27C17.67 1.47 14.97 1 12 1 7.24 1 3.19 3.74 1.24 7.74l3.83 2.97C5.99 7.42 8.79 5.04 12 5.04z"
-                  />
-                  <path
-                    fill="#4285F4"
-                    d="M23.49 12.27c0-.81-.07-1.59-.2-2.36H12v4.51h6.46c-.29 1.48-1.14 2.73-2.42 3.57l3.77 2.92c2.2-2.03 3.68-5.02 3.68-8.64z"
-                  />
-                  <path
-                    fill="#FBBC05"
-                    d="M5.07 14.77A7.12 7.12 0 0 1 4.68 12c0-.98.17-1.92.48-2.8L1.24 6.23A11.94 11.94 0 0 0 0 12c0 2.12.55 4.12 1.51 5.87l3.56-3.1z"
-                  />
-                  <path
-                    fill="#34A853"
-                    d="M12 23c3.24 0 5.97-1.07 7.96-2.92l-3.77-2.92c-1.15.77-2.6 1.25-4.19 1.25-3.21 0-6.01-2.38-6.93-5.67L1.24 15.8C3.19 19.8 7.24 23 12 23z"
-                  />
-                </svg>
-                Continue with Gmail / Google
-              </button>
 
-              <div className="relative flex py-2 items-center text-xs text-gray-500 uppercase font-bold tracking-wider mb-4">
-                <div className="flex-grow border-t border-white/5"></div>
-                <span className="flex-shrink mx-3 text-[10px] font-mono select-none">Or traditional email</span>
-                <div className="flex-grow border-t border-white/5"></div>
+              <div className="w-full mb-6 p-4 rounded-xl bg-amber-500/10 border border-amber-500/20 text-amber-300 text-xs text-center font-sans">
+                Google Sign-In is temporarily unavailable. Please use email login below.
               </div>
 
               <form className="space-y-5" onSubmit={handleLogin}>
@@ -1105,38 +1078,11 @@ export default function App() {
                   {error}
                 </div>
               )}
-              
-              <button 
-                onClick={handleGoogleLogin}
-                className="w-full mb-6 py-3.5 rounded-xl font-bold bg-white text-black hover:bg-gray-100 transition-colors flex items-center justify-center gap-3 shadow-lg shadow-white/5 cursor-pointer text-sm"
-              >
-                <svg viewBox="0 0 24 24" className="w-5 h-5">
-                  <path
-                    fill="#EA4335"
-                    d="M12 5.04c1.66 0 3.2.57 4.38 1.69l3.27-3.27C17.67 1.47 14.97 1 12 1 7.24 1 3.19 3.74 1.24 7.74l3.83 2.97C5.99 7.42 8.79 5.04 12 5.04z"
-                  />
-                  <path
-                    fill="#4285F4"
-                    d="M23.49 12.27c0-.81-.07-1.59-.2-2.36H12v4.51h6.46c-.29 1.48-1.14 2.73-2.42 3.57l3.77 2.92c2.2-2.03 3.68-5.02 3.68-8.64z"
-                  />
-                  <path
-                    fill="#FBBC05"
-                    d="M5.07 14.77A7.12 7.12 0 0 1 4.68 12c0-.98.17-1.92.48-2.8L1.24 6.23A11.94 11.94 0 0 0 0 12c0 2.12.55 4.12 1.51 5.87l3.56-3.1z"
-                  />
-                  <path
-                    fill="#34A853"
-                    d="M12 23c3.24 0 5.97-1.07 7.96-2.92l-3.77-2.92c-1.15.77-2.6 1.25-4.19 1.25-3.21 0-6.01-2.38-6.93-5.67L1.24 15.8C3.19 19.8 7.24 23 12 23z"
-                  />
-                </svg>
-                Continue with Gmail / Google
-              </button>
 
-              <div className="relative flex py-2 items-center text-xs text-gray-500 uppercase font-bold tracking-wider mb-4">
-                <div className="flex-grow border-t border-white/5"></div>
-                <span className="flex-shrink mx-3 text-[10px] font-mono select-none">Or traditional email</span>
-                <div className="flex-grow border-t border-white/5"></div>
+              <div className="w-full mb-6 p-4 rounded-xl bg-amber-500/10 border border-amber-500/20 text-amber-300 text-xs text-center font-sans">
+                Google Sign-In is temporarily unavailable. Please use email login below.
               </div>
-              
+
               <form className="space-y-5" onSubmit={handleSignup}>
                 <div>
                   <label className="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">Full Name</label>
