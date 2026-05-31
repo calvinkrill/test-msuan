@@ -18,17 +18,17 @@ import {
 const INITIAL_PROFILES: UserProfile[] = [
   {
     uid: "test_user_1",
-    name: "Maria Santos",
-    email: "maria.santos@msumain.edu.ph",
-    username: "@maria_santos",
-    bio: "BS Computer Science student at MSU Main. Passionate about web development and AI.",
-    photoURL: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150",
-    coverURL: "https://images.unsplash.com/photo-1557683316-973673baf926?w=800",
+    name: "ONEMSU",
+    email: "info@onemsu.edu.ph",
+    username: "@onemsu",
+    bio: "Welcome to ONEMSU - The unified student community hub connecting all 8 MSU campuses across Mindanao and Sulu.",
+    photoURL: "https://cdn.builder.io/api/v1/image/assets%2F23368e21ff6f469fbe3b6cd7a12f765a%2F935b37ec15f04e76b6201798aa1bad97?format=webp&width=200&height=300",
+    coverURL: "https://images.unsplash.com/photo-1507842217343-583bb7270b66?w=800",
     campus: "MSU Main",
-    courseAndYear: "BS Computer Science - 2nd Year",
-    role: "student",
+    courseAndYear: "Community Platform",
+    role: "community",
     isVerified: true,
-    achievements: ["Active Member", "Campus Scholar"],
+    achievements: ["Official Community", "Campus Connection"],
     privacySettings: { profileVisibility: "public", messagePermission: "everyone", activityLogPublic: true }
   },
   {
