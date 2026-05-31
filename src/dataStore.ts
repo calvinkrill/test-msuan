@@ -31,36 +31,6 @@ const INITIAL_PROFILES: UserProfile[] = [
     achievements: ["System Founder", "Peace Advocate"],
     privacySettings: { profileVisibility: "public", messagePermission: "everyone", activityLogPublic: true }
   },
-  {
-    uid: "user_iit_1",
-    name: "Kyle Christian",
-    email: "kyle.christian@g.msuiit.edu.ph",
-    username: "@kyle_tech",
-    bio: "Robotics Major and Innovator at MSU-IIT. Playing drums, programming, and making dreams into reality.",
-    photoURL: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150",
-    coverURL: "https://images.unsplash.com/photo-1518770660439-4636190af475?w=800",
-    campus: "MSU IIT",
-    courseAndYear: "BS Electronics Engineering - 4th Year",
-    role: "student",
-    isVerified: false,
-    achievements: ["Robotics Champion"],
-    privacySettings: { profileVisibility: "friends", messagePermission: "friends", activityLogPublic: true }
-  },
-  {
-    uid: "user_gensan_1",
-    name: "Datu Fahad",
-    email: "fahad.datu@msugensan.edu.ph",
-    username: "@fahad_datu",
-    bio: "President of the Gensan Debating Society. Focused on international law, regional policy and tuna farming research.",
-    photoURL: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150",
-    coverURL: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800",
-    campus: "MSU Gensan",
-    courseAndYear: "BA Political Science - 4th Year",
-    role: "student",
-    isVerified: true,
-    achievements: ["Campus Leader", "Best Debater '25"],
-    privacySettings: { profileVisibility: "public", messagePermission: "everyone", activityLogPublic: true }
-  }
 ];
 
 const INITIAL_POSTS: Post[] = [
@@ -77,27 +47,13 @@ const INITIAL_POSTS: Post[] = [
     isPinned: true,
     hashtags: ["ONEMSU", "MSULegacy"],
     shares: 42,
-    reactions: [
-      { userId: "user_iit_1", userName: "Kyle Christian", type: "like" },
-      { userId: "user_gensan_1", userName: "Datu Fahad", type: "wow" }
-    ],
+    reactions: [],
     comments: [],
     timestamp: Date.now() - 360000000
   },
 ];
 
-const INITIAL_STORIES: Story[] = [
-  {
-    id: "story_2",
-    userId: "user_iit_1",
-    userName: "Kyle Christian",
-    userPhoto: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150",
-    imageUrl: "https://images.unsplash.com/photo-1520333789090-1afc82db536a?w=400",
-    timestamp: Date.now() - 2 * 3600000,
-    viewers: ["user_marawi_1"],
-    reactions: [{ userId: "user_marawi_1", reaction: "🔥" }]
-  }
-];
+const INITIAL_STORIES: Story[] = [];
 
 const INITIAL_GROUPS: GroupChat[] = [
   {
@@ -105,8 +61,8 @@ const INITIAL_GROUPS: GroupChat[] = [
     name: "MSU Hackathon 2026",
     description: "Global team matching and project sharing workspace for student builders.",
     image: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=200",
-    members: ["admin_user", "user_marawi_1", "user_iit_1", "user_gensan_1"],
-    moderators: ["admin_user", "user_marawi_1"],
+    members: ["admin_user"],
+    moderators: ["admin_user"],
     messages: [
       {
         id: "gm_1",
@@ -115,15 +71,6 @@ const INITIAL_GROUPS: GroupChat[] = [
         senderName: "Dr. Alonto Domocao",
         text: "Good luck with team formations, builders! Make the Alonto legacy proud.",
         timestamp: Date.now() - 360000000,
-        seen: true
-      },
-      {
-        id: "gm_2",
-        chatId: "group_1",
-        senderId: "user_marawi_1",
-        senderName: "Sittie Fatima",
-        text: "Thanks Dr. Alonto! Looking for coders skilled in full-stack setups.",
-        timestamp: Date.now() - 180000000,
         seen: true
       }
     ]
@@ -181,9 +128,7 @@ class SocialDataStore {
     
     // Connections Mapping
     const defaultConnections: Record<string, UserConnections> = {
-      admin_user: { friends: [], following: [], followers: [], blocked: [] },
-      user_iit_1: { friends: [], following: [], followers: [], blocked: [] },
-      user_gensan_1: { friends: [], following: [], followers: [], blocked: [] }
+      admin_user: { friends: [], following: [], followers: [], blocked: [] }
     };
     this.connections = this.load("connections", defaultConnections);
 
