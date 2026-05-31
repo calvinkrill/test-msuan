@@ -26,7 +26,7 @@ const INITIAL_PROFILES: UserProfile[] = [
     coverURL: "https://images.unsplash.com/photo-1507842217343-583bb7270b66?w=800",
     campus: "MSU Main",
     courseAndYear: "Community Platform",
-    role: "community",
+    role: "admin",
     isVerified: true,
     achievements: ["Official Community", "Campus Connection"],
     privacySettings: { profileVisibility: "public", messagePermission: "everyone", activityLogPublic: true }
