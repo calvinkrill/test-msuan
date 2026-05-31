@@ -207,6 +207,13 @@ class SocialDataStore {
   }
 
   private initData() {
+    // Clear old cached data to force fresh load
+    const cacheVersion = localStorage.getItem(this.keyPrefix + "cache_version");
+    if (cacheVersion !== "v2") {
+      localStorage.clear();
+      localStorage.setItem(this.keyPrefix + "cache_version", "v2");
+    }
+
     this.profiles = this.load("profiles", INITIAL_PROFILES);
     this.posts = this.load("posts", INITIAL_POSTS);
     this.stories = this.load("stories", INITIAL_STORIES);
