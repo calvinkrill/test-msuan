@@ -330,9 +330,9 @@ export default function App() {
     return () => unsubscribe();
   }, []);
 
-  // Listen to Firestore real-time enrolled courses
+  // Listen to Firestore real-time enrolled courses (only for Firebase authenticated users)
   useEffect(() => {
-    if (!user) {
+    if (!user || !auth.currentUser) {
       setEnrolledCourses([]);
       return;
     }
@@ -342,7 +342,8 @@ export default function App() {
       const list = snapshot.docs.map(doc => doc.data().courseName as string);
       setEnrolledCourses(list);
     }, (err) => {
-      handleFirestoreError(err, OperationType.LIST, `users/${user.uid}/enrollments`);
+      console.error('Error loading enrollments:', err);
+      setEnrolledCourses([]);
     });
 
     return () => unsubscribe();
