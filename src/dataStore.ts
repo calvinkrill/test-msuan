@@ -19,16 +19,16 @@ const INITIAL_PROFILES: UserProfile[] = [
   {
     uid: "admin_user",
     name: "Dr. Alonto Domocao",
-    email: "ad_system@msumain.edu.ph",
-    username: "@msu_admin",
-    bio: "Chief System Administrator for ONEMSU. Forging peace and scholarly excellence throughout the Mindanao region.",
+    email: "demo@msumain.edu.ph",
+    username: "@msu_demo",
+    bio: "Demo Account for ONEMSU. Experience the full capabilities of our student community platform.",
     photoURL: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=150",
     coverURL: "https://images.unsplash.com/photo-1507842217343-583bb7270b66?w=800",
     campus: "MSU Main",
-    courseAndYear: "Faculty of Social Sciences",
-    role: "admin",
+    courseAndYear: "Demo Account",
+    role: "demo",
     isVerified: true,
-    achievements: ["System Founder", "Peace Advocate"],
+    achievements: ["Demo Account"],
     privacySettings: { profileVisibility: "public", messagePermission: "everyone", activityLogPublic: true }
   },
 ];
