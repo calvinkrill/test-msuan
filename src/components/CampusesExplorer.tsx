@@ -29,6 +29,27 @@ import {
   Map
 } from 'lucide-react';
 
+interface Course {
+  code: string;
+  name: string;
+  level: 'undergraduate' | 'graduate' | 'postgraduate';
+  description?: string;
+}
+
+interface Department {
+  name: string;
+  description: string;
+  courseCount: number;
+  courses: Course[];
+}
+
+interface College {
+  name: string;
+  description: string;
+  departments: Department[];
+  icon?: string;
+}
+
 interface Campus {
   name: string;
   slug: string;
@@ -43,7 +64,7 @@ interface Campus {
     employmentRate: string;
   };
   specialties: string[];
-  colleges: string[];
+  colleges: College[];
   landmarks: { name: string; desc: string }[];
   accentColor: string; // Tailwind color class like "amber-500"
   badgeColor: string; // background color like "bg-amber-500/10 text-amber-400"
@@ -53,22 +74,153 @@ interface Campus {
 }
 
 const CAMPUSES_DATA: Campus[] = [
-  { 
-    name: "MSU Main Campus (Marawi)", 
-    slug: "msu-main", 
-    location: "Marawi City, Lanao del Sur", 
+  {
+    name: "MSU Main Campus (Marawi)",
+    slug: "msu-main",
+    location: "Marawi City, Lanao del Sur",
     founded: 1961,
     tagline: "The Majestic Flagship Citadel on the Hills",
     description: "The flagship campus of the Mindanao State University System. High on the hills of Marawi City overlooking Lake Lanao, MSU Main is legendary for its academic diversity, focus on regional peace-building, and profound cultural heritage.",
     stats: { students: "20,000+", courses: "150+", faculty: "1,200+", employmentRate: "88%" },
     specialties: ["Peace & Conflict Studies", "Islamic Arts & Letters", "Medicine & Healthcare", "Civil Law", "Engineering"],
     colleges: [
-      "College of Medicine",
-      "College of Law",
-      "College of Engineering",
-      "College of Agriculture",
-      "King Faisal Center for Islamic, Arabic and Asian Studies",
-      "College of Social Sciences & Humanities"
+      {
+        name: "College of Medicine",
+        description: "World-class medical education and healthcare training",
+        icon: "⚕️",
+        departments: [
+          {
+            name: "Department of Anatomy",
+            description: "Structure and function of human body systems",
+            courseCount: 8,
+            courses: [
+              { code: "MED101", name: "Gross Anatomy I", level: "undergraduate" },
+              { code: "MED102", name: "Histology & Embryology", level: "undergraduate" },
+              { code: "MED201", name: "Neuroanatomy", level: "undergraduate" },
+              { code: "MED301", name: "Advanced Anatomy", level: "graduate" },
+              { code: "MED401", name: "Anatomical Research Seminar", level: "postgraduate" },
+              { code: "MED102S", name: "Surgical Anatomy", level: "undergraduate" },
+              { code: "MED105", name: "Embryology Specialized", level: "undergraduate" },
+              { code: "MED203", name: "Clinical Anatomy for Surgery", level: "undergraduate" }
+            ]
+          },
+          {
+            name: "Department of Physiology",
+            description: "Body systems functions and mechanisms",
+            courseCount: 7,
+            courses: [
+              { code: "PHY101", name: "General Physiology", level: "undergraduate" },
+              { code: "PHY102", name: "Cardiovascular Physiology", level: "undergraduate" },
+              { code: "PHY103", name: "Respiratory Physiology", level: "undergraduate" },
+              { code: "PHY201", name: "Clinical Physiology", level: "undergraduate" },
+              { code: "PHY301", name: "Advanced Physiology", level: "graduate" },
+              { code: "PHY302", name: "Renal & Endocrine Physiology", level: "graduate" },
+              { code: "PHY401", name: "Physiology Research", level: "postgraduate" }
+            ]
+          },
+          {
+            name: "Department of Pharmacology",
+            description: "Drug interactions and therapeutic applications",
+            courseCount: 6,
+            courses: [
+              { code: "PHAR101", name: "General Pharmacology", level: "undergraduate" },
+              { code: "PHAR102", name: "Pharmacokinetics & Dynamics", level: "undergraduate" },
+              { code: "PHAR201", name: "Clinical Pharmacology", level: "undergraduate" },
+              { code: "PHAR202", name: "Drug Interactions & Toxicology", level: "undergraduate" },
+              { code: "PHAR301", name: "Pharmacotherapy", level: "graduate" },
+              { code: "PHAR401", name: "Pharmaceutical Research", level: "postgraduate" }
+            ]
+          }
+        ]
+      },
+      {
+        name: "College of Law",
+        description: "Legal education and justice system studies",
+        icon: "⚖️",
+        departments: [
+          {
+            name: "Department of Civil Law",
+            description: "Property, contracts, and civil obligations",
+            courseCount: 8,
+            courses: [
+              { code: "LAW101", name: "Introduction to Law", level: "undergraduate" },
+              { code: "LAW102", name: "Civil Code Part I", level: "undergraduate" },
+              { code: "LAW103", name: "Property Law", level: "undergraduate" },
+              { code: "LAW201", name: "Contracts & Obligations", level: "undergraduate" },
+              { code: "LAW202", name: "Family Law", level: "undergraduate" },
+              { code: "LAW301", name: "Advanced Civil Law", level: "graduate" },
+              { code: "LAW302", name: "Legal Interpretation Methods", level: "graduate" },
+              { code: "LAW401", name: "Civil Law Research Thesis", level: "postgraduate" }
+            ]
+          },
+          {
+            name: "Department of Criminal Law",
+            description: "Criminal justice and penal systems",
+            courseCount: 7,
+            courses: [
+              { code: "CRIM101", name: "Criminal Law I", level: "undergraduate" },
+              { code: "CRIM102", name: "Criminal Procedure", level: "undergraduate" },
+              { code: "CRIM201", name: "Evidence Law", level: "undergraduate" },
+              { code: "CRIM202", name: "Criminal Law II", level: "undergraduate" },
+              { code: "CRIM301", name: "Advanced Criminal Law", level: "graduate" },
+              { code: "CRIM302", name: "Criminology & Society", level: "graduate" },
+              { code: "CRIM401", name: "Criminal Justice Research", level: "postgraduate" }
+            ]
+          }
+        ]
+      },
+      {
+        name: "College of Engineering",
+        description: "Advanced engineering and technology programs",
+        icon: "⚙️",
+        departments: [
+          {
+            name: "Department of Civil Engineering",
+            description: "Infrastructure, buildings, and structural design",
+            courseCount: 6,
+            courses: [
+              { code: "CEVC101", name: "Engineering Graphics & Design", level: "undergraduate" },
+              { code: "CEVC102", name: "Mechanics of Materials", level: "undergraduate" },
+              { code: "CEVC201", name: "Structural Analysis", level: "undergraduate" },
+              { code: "CEVC202", name: "Foundation Engineering", level: "undergraduate" },
+              { code: "CEVC301", name: "Advanced Structural Design", level: "graduate" },
+              { code: "CEVC401", name: "Civil Engineering Thesis", level: "postgraduate" }
+            ]
+          },
+          {
+            name: "Department of Electrical Engineering",
+            description: "Power systems and electrical design",
+            courseCount: 6,
+            courses: [
+              { code: "ELEC101", name: "Circuit Analysis", level: "undergraduate" },
+              { code: "ELEC102", name: "Electromagnetics", level: "undergraduate" },
+              { code: "ELEC201", name: "Power Systems I", level: "undergraduate" },
+              { code: "ELEC202", name: "Power Systems II", level: "undergraduate" },
+              { code: "ELEC301", name: "Advanced Power Analysis", level: "graduate" },
+              { code: "ELEC401", name: "Electrical Engineering Research", level: "postgraduate" }
+            ]
+          }
+        ]
+      },
+      {
+        name: "King Faisal Center for Islamic Studies",
+        description: "Islamic education and cultural heritage preservation",
+        icon: "📖",
+        departments: [
+          {
+            name: "Department of Islamic Theology",
+            description: "Islamic philosophy and theological studies",
+            courseCount: 5,
+            courses: [
+              { code: "ISLAM101", name: "Fundamentals of Islam", level: "undergraduate" },
+              { code: "ISLAM102", name: "Quranic Studies", level: "undergraduate" },
+              { code: "ISLAM201", name: "Islamic Jurisprudence", level: "undergraduate" },
+              { code: "ISLAM301", name: "Advanced Islamic Theology", level: "graduate" },
+              { code: "ISLAM401", name: "Islamic Philosophy Research", level: "postgraduate" }
+            ]
+          }
+        ]
+      }
     ],
     landmarks: [
       { name: "Aga Khan Museum", desc: "A treasure trove of Islamic Arts, Maranao crafts, and indigenous artifacts of Mindanao." },
@@ -81,21 +233,106 @@ const CAMPUSES_DATA: Campus[] = [
     coordinate: { x: 52, y: 30 },
     region: "Northern & Central"
   },
-  { 
-    name: "MSU-Iligan Institute of Technology (MSU-IIT)", 
-    slug: "msu-iit", 
-    location: "Iligan City, Lanao del Norte", 
+  {
+    name: "MSU-Iligan Institute of Technology (MSU-IIT)",
+    slug: "msu-iit",
+    location: "Iligan City, Lanao del Norte",
     founded: 1968,
     tagline: "The Innovation and Technological Powerhouse",
     description: "Established in 1968, the Iligan Institute of Technology is revered as one of the premier technology and science centers of the Philippines. It combines high-octane engineering programs with deep cutting-edge digital research laboratories.",
     stats: { students: "15,000+", courses: "105+", faculty: "850+", employmentRate: "93%" },
     specialties: ["Computer Science", "Mechanical & Chemical Engineering", "Natural Sciences", "Robotics", "Modern Arts"],
     colleges: [
-      "College of Engineering and Technology",
-      "School of Computer Studies",
-      "College of Science and Mathematics",
-      "School of Engineering Technology",
-      "College of Business Administration"
+      {
+        name: "College of Engineering and Technology",
+        description: "Advanced engineering with robotics and automation",
+        icon: "⚙️",
+        departments: [
+          {
+            name: "Department of Mechanical Engineering",
+            description: "Mechanical design, thermodynamics, and automation",
+            courseCount: 7,
+            courses: [
+              { code: "MECH101", name: "Engineering Mechanics", level: "undergraduate" },
+              { code: "MECH102", name: "Thermodynamics I", level: "undergraduate" },
+              { code: "MECH201", name: "Fluid Mechanics", level: "undergraduate" },
+              { code: "MECH202", name: "Machine Design", level: "undergraduate" },
+              { code: "MECH301", name: "Thermal Systems Design", level: "graduate" },
+              { code: "MECH302", name: "Robotics & Automation", level: "graduate" },
+              { code: "MECH401", name: "Mechanical Engineering Research", level: "postgraduate" }
+            ]
+          },
+          {
+            name: "Department of Chemical Engineering",
+            description: "Process design and chemical manufacturing",
+            courseCount: 6,
+            courses: [
+              { code: "CHEM101", name: "Stoichiometry & Reactions", level: "undergraduate" },
+              { code: "CHEM102", name: "Unit Operations", level: "undergraduate" },
+              { code: "CHEM201", name: "Chemical Process Design", level: "undergraduate" },
+              { code: "CHEM202", name: "Bioprocess Engineering", level: "undergraduate" },
+              { code: "CHEM301", name: "Advanced Process Control", level: "graduate" },
+              { code: "CHEM401", name: "Chemical Engineering Thesis", level: "postgraduate" }
+            ]
+          }
+        ]
+      },
+      {
+        name: "School of Computer Studies",
+        description: "Computing, software engineering, and IT systems",
+        icon: "💻",
+        departments: [
+          {
+            name: "Department of Computer Science",
+            description: "Algorithms, data structures, and core computing",
+            courseCount: 8,
+            courses: [
+              { code: "COCS101", name: "Introduction to Programming", level: "undergraduate" },
+              { code: "COCS102", name: "Data Structures", level: "undergraduate" },
+              { code: "COCS201", name: "Algorithms & Complexity", level: "undergraduate" },
+              { code: "COCS202", name: "Database Systems", level: "undergraduate" },
+              { code: "COCS203", name: "Artificial Intelligence", level: "undergraduate" },
+              { code: "COCS301", name: "Advanced AI & Machine Learning", level: "graduate" },
+              { code: "COCS302", name: "Computer Vision", level: "graduate" },
+              { code: "COCS401", name: "CS Thesis & Research", level: "postgraduate" }
+            ]
+          },
+          {
+            name: "Department of Software Engineering",
+            description: "Software development and system architecture",
+            courseCount: 7,
+            courses: [
+              { code: "SOFT101", name: "Software Engineering Fundamentals", level: "undergraduate" },
+              { code: "SOFT102", name: "Web Development I", level: "undergraduate" },
+              { code: "SOFT201", name: "Web Development II (Full Stack)", level: "undergraduate" },
+              { code: "SOFT202", name: "Mobile App Development", level: "undergraduate" },
+              { code: "SOFT301", name: "Advanced Web Architecture", level: "graduate" },
+              { code: "SOFT302", name: "DevOps & Cloud Computing", level: "graduate" },
+              { code: "SOFT401", name: "Software Engineering Research", level: "postgraduate" }
+            ]
+          }
+        ]
+      },
+      {
+        name: "College of Science and Mathematics",
+        description: "Pure sciences and mathematical foundations",
+        icon: "🔬",
+        departments: [
+          {
+            name: "Department of Physics",
+            description: "Physics principles and modern physics",
+            courseCount: 6,
+            courses: [
+              { code: "PHYS101", name: "General Physics I", level: "undergraduate" },
+              { code: "PHYS102", name: "General Physics II", level: "undergraduate" },
+              { code: "PHYS201", name: "Modern Physics", level: "undergraduate" },
+              { code: "PHYS202", name: "Quantum Mechanics", level: "undergraduate" },
+              { code: "PHYS301", name: "Advanced Physics", level: "graduate" },
+              { code: "PHYS401", name: "Physics Research Thesis", level: "postgraduate" }
+            ]
+          }
+        ]
+      }
     ],
     landmarks: [
       { name: "MSU-IIT Overpass Landmark", desc: "The iconic architectural gateway indicating deep integration with Iligan City's industry." },
@@ -108,20 +345,81 @@ const CAMPUSES_DATA: Campus[] = [
     coordinate: { x: 55, y: 18 },
     region: "Northern & Central"
   },
-  { 
-    name: "MSU-General Santos", 
-    slug: "msu-gensan", 
-    location: "General Santos City", 
+  {
+    name: "MSU-General Santos",
+    slug: "msu-gensan",
+    location: "General Santos City",
     founded: 1967,
     tagline: "The Hub of Tuna, Trade and Regional Innovation",
     description: "Serving the vibrant SOCCSKSARGEN economic corridor, MSU General Santos is strategically positioned to innovate in agribusiness, sustainable fisheries, and modern trade services under a framework of multi-ethnic harmony.",
     stats: { students: "12,000+", courses: "84+", faculty: "620+", employmentRate: "89%" },
     specialties: ["Marine Fisheries Technology", "Export Agribusiness", "Business Analytics", "Secondary Teacher Training"],
     colleges: [
-      "College of Agriculture",
-      "College of Fisheries",
-      "College of Business Administration & Accountancy",
-      "College of Natural Sciences & Mathematics"
+      {
+        name: "College of Fisheries",
+        description: "Marine fisheries and aquaculture technology",
+        icon: "🐟",
+        departments: [
+          {
+            name: "Department of Fisheries Biology",
+            description: "Fish species, ecology, and breeding",
+            courseCount: 6,
+            courses: [
+              { code: "FISH101", name: "Ichthyology", level: "undergraduate" },
+              { code: "FISH102", name: "Fish Ecology", level: "undergraduate" },
+              { code: "FISH201", name: "Fisheries Biology", level: "undergraduate" },
+              { code: "FISH202", name: "Fish Nutrition", level: "undergraduate" },
+              { code: "FISH301", name: "Advanced Fish Biology", level: "graduate" },
+              { code: "FISH401", name: "Fisheries Research Thesis", level: "postgraduate" }
+            ]
+          },
+          {
+            name: "Department of Aquaculture",
+            description: "Fish farming and hatchery management",
+            courseCount: 5,
+            courses: [
+              { code: "AQUA101", name: "Aquaculture Systems", level: "undergraduate" },
+              { code: "AQUA102", name: "Fish Hatchery Operations", level: "undergraduate" },
+              { code: "AQUA201", name: "Commercial Fish Farming", level: "undergraduate" },
+              { code: "AQUA301", name: "Advanced Aquaculture Tech", level: "graduate" },
+              { code: "AQUA401", name: "Aquaculture Development", level: "postgraduate" }
+            ]
+          }
+        ]
+      },
+      {
+        name: "College of Business Administration",
+        description: "Business management and commerce education",
+        icon: "💼",
+        departments: [
+          {
+            name: "Department of Accounting",
+            description: "Financial accounting and audit",
+            courseCount: 6,
+            courses: [
+              { code: "ACC101", name: "Accounting Fundamentals", level: "undergraduate" },
+              { code: "ACC102", name: "Financial Accounting", level: "undergraduate" },
+              { code: "ACC201", name: "Managerial Accounting", level: "undergraduate" },
+              { code: "ACC202", name: "Auditing Principles", level: "undergraduate" },
+              { code: "ACC301", name: "Advanced Accounting", level: "graduate" },
+              { code: "ACC401", name: "Accounting Research", level: "postgraduate" }
+            ]
+          },
+          {
+            name: "Department of Business Management",
+            description: "Organizational management and strategy",
+            courseCount: 6,
+            courses: [
+              { code: "MGMT101", name: "Business Fundamentals", level: "undergraduate" },
+              { code: "MGMT102", name: "Organizational Behavior", level: "undergraduate" },
+              { code: "MGMT201", name: "Strategic Management", level: "undergraduate" },
+              { code: "MGMT202", name: "Operations Management", level: "undergraduate" },
+              { code: "MGMT301", name: "Advanced Management", level: "graduate" },
+              { code: "MGMT401", name: "Business Research", level: "postgraduate" }
+            ]
+          }
+        ]
+      }
     ],
     landmarks: [
       { name: "Pioneer Monument Hall", desc: "A beautiful space symbolizing the hard work of Southern Mindanao's early educators." },
@@ -134,20 +432,67 @@ const CAMPUSES_DATA: Campus[] = [
     coordinate: { x: 74, y: 78 },
     region: "Southern"
   },
-  { 
-    name: "MSU-Tawi-Tawi College of Technology and Oceanography", 
-    slug: "msu-tawi-tawi", 
-    location: "Bongao, Tawi-Tawi", 
+  {
+    name: "MSU-Tawi-Tawi College of Technology and Oceanography",
+    slug: "msu-tawi-tawi",
+    location: "Bongao, Tawi-Tawi",
     founded: 1969,
     tagline: "The Oceanographic and Maritime Jewel",
     description: "Situated in the pristine southernmost borders, MSU Tawi-Tawi is the nation's premier ocean research bastion. It specializes deeply in coral conservation, deep-sea fisheries, seaweed biotech, and the rich marine folklore of the Sulu Sea.",
     stats: { students: "8,000+", courses: "42+", faculty: "380+", employmentRate: "85%" },
     specialties: ["Deep Sea Oceanography", "Seaweed Biotechnology", "Mariculture & Hatchery", "Islamic Heritage"],
     colleges: [
-      "College of Fisheries & Allied Sciences",
-      "Institute of Oceanography and Environmental Science",
-      "College of Arts and Sciences",
-      "College of Islamic Studies"
+      {
+        name: "Institute of Oceanography and Environmental Science",
+        description: "Ocean research and marine conservation",
+        icon: "🌊",
+        departments: [
+          {
+            name: "Department of Oceanography",
+            description: "Ocean sciences and marine research",
+            courseCount: 6,
+            courses: [
+              { code: "OCEAN101", name: "Oceanography Fundamentals", level: "undergraduate" },
+              { code: "OCEAN102", name: "Physical Oceanography", level: "undergraduate" },
+              { code: "OCEAN201", name: "Marine Ecology", level: "undergraduate" },
+              { code: "OCEAN202", name: "Coral Reef Science", level: "undergraduate" },
+              { code: "OCEAN301", name: "Advanced Oceanography", level: "graduate" },
+              { code: "OCEAN401", name: "Ocean Research Thesis", level: "postgraduate" }
+            ]
+          },
+          {
+            name: "Department of Seaweed Biotechnology",
+            description: "Seaweed cultivation and biotech applications",
+            courseCount: 5,
+            courses: [
+              { code: "SEAW101", name: "Seaweed Biology", level: "undergraduate" },
+              { code: "SEAW102", name: "Cultivation Techniques", level: "undergraduate" },
+              { code: "SEAW201", name: "Seaweed Biotech", level: "undergraduate" },
+              { code: "SEAW301", name: "Advanced Applications", level: "graduate" },
+              { code: "SEAW401", name: "Biotechnology Research", level: "postgraduate" }
+            ]
+          }
+        ]
+      },
+      {
+        name: "College of Fisheries & Allied Sciences",
+        description: "Fisheries management and marine technology",
+        icon: "🐟",
+        departments: [
+          {
+            name: "Department of Fisheries",
+            description: "Commercial and artisanal fishing",
+            courseCount: 5,
+            courses: [
+              { code: "FISH101", name: "Fishing Methods", level: "undergraduate" },
+              { code: "FISH102", name: "Fish Stock Assessment", level: "undergraduate" },
+              { code: "FISH201", name: "Fisheries Management", level: "undergraduate" },
+              { code: "FISH301", name: "Advanced Fisheries", level: "graduate" },
+              { code: "FISH401", name: "Fisheries Research", level: "postgraduate" }
+            ]
+          }
+        ]
+      }
     ],
     landmarks: [
       { name: "Bud Bongao Sacred Outlook", desc: "The majestic sacred peak rising directly behind the ocean research campus." },
@@ -160,19 +505,36 @@ const CAMPUSES_DATA: Campus[] = [
     coordinate: { x: 10, y: 88 },
     region: "Zamboanga & Sulu"
   },
-  { 
-    name: "MSU-Naawan", 
-    slug: "msu-naawan", 
-    location: "Naawan, Misamis Oriental", 
+  {
+    name: "MSU-Naawan",
+    slug: "msu-naawan",
+    location: "Naawan, Misamis Oriental",
     founded: 1989,
     tagline: "The Center of Inland Fisheries Excellence",
     description: "Nestled along Macajalar Bay, MSU Naawan is highly acclaimed for pioneering researches in inland aquaculture, brackish water biology, ecological mangrove systems, and micro-algal ecosystems.",
     stats: { students: "5,200+", courses: "32+", faculty: "240+", employmentRate: "91%" },
     specialties: ["Hatchery Propagation", "Mangrove Forest Management", "Aquaculture Engineering"],
     colleges: [
-      "College of Fisheries and Allied Sciences",
-      "College of Science and Mathematics",
-      "School of Business Administration & Technology"
+      {
+        name: "College of Fisheries and Allied Sciences",
+        description: "Aquaculture and brackish water biology",
+        icon: "🐟",
+        departments: [
+          {
+            name: "Department of Aquaculture",
+            description: "Fish farming and hatchery management",
+            courseCount: 6,
+            courses: [
+              { code: "AQUA101", name: "Hatchery Management", level: "undergraduate" },
+              { code: "AQUA102", name: "Brackish Water Aquaculture", level: "undergraduate" },
+              { code: "AQUA201", name: "Shrimp Farming", level: "undergraduate" },
+              { code: "AQUA202", name: "Feed & Nutrition", level: "undergraduate" },
+              { code: "AQUA301", name: "Advanced Aquaculture", level: "graduate" },
+              { code: "AQUA401", name: "Aquaculture Research", level: "postgraduate" }
+            ]
+          }
+        ]
+      }
     ],
     landmarks: [
       { name: "Coastal Spawning Hatcheries", desc: "Renowned facilities that supply premium finfish and shrimp fry to Mindanao farmers." },
@@ -185,20 +547,67 @@ const CAMPUSES_DATA: Campus[] = [
     coordinate: { x: 50, y: 10 },
     region: "Northern & Central"
   },
-  { 
-    name: "MSU-Maguindanao", 
-    slug: "msu-maguindanao", 
-    location: "Datu Odin Sinsuat, Maguindanao del Norte", 
+  {
+    name: "MSU-Maguindanao",
+    slug: "msu-maguindanao",
+    location: "Datu Odin Sinsuat, Maguindanao del Norte",
     founded: 1973,
     tagline: "Agricultural Empowerment and Cultural Integration",
     description: "With a profound agricultural research thrust, MSU Maguindanao builds educational programs designed to harness the rich fertile soils of the Cotabato Basin, serving diverse communities through peace education and crop innovation.",
     stats: { students: "7,500+", courses: "48+", faculty: "310+", employmentRate: "84%" },
     specialties: ["Tropical Crops Agronomy", "Sustainable Farming Systems", "Islamic Cooperative Finance"],
     colleges: [
-      "College of Agriculture and Forestry",
-      "College of Public Affairs & Governance",
-      "College of Education",
-      "Institute of Information Technology"
+      {
+        name: "College of Agriculture and Forestry",
+        description: "Agricultural sciences and forestry management",
+        icon: "🌾",
+        departments: [
+          {
+            name: "Department of Agronomy",
+            description: "Crop science and soil management",
+            courseCount: 6,
+            courses: [
+              { code: "AGRO101", name: "Crop Production", level: "undergraduate" },
+              { code: "AGRO102", name: "Soil Fertility Management", level: "undergraduate" },
+              { code: "AGRO201", name: "Pest Management", level: "undergraduate" },
+              { code: "AGRO202", name: "Sustainable Agriculture", level: "undergraduate" },
+              { code: "AGRO301", name: "Advanced Agronomy", level: "graduate" },
+              { code: "AGRO401", name: "Agriculture Research", level: "postgraduate" }
+            ]
+          },
+          {
+            name: "Department of Forestry",
+            description: "Forest management and conservation",
+            courseCount: 5,
+            courses: [
+              { code: "FOR101", name: "Forest Ecology", level: "undergraduate" },
+              { code: "FOR102", name: "Silviculture", level: "undergraduate" },
+              { code: "FOR201", name: "Forest Management", level: "undergraduate" },
+              { code: "FOR301", name: "Advanced Forestry", level: "graduate" },
+              { code: "FOR401", name: "Forestry Research Thesis", level: "postgraduate" }
+            ]
+          }
+        ]
+      },
+      {
+        name: "College of Education",
+        description: "Teacher training and educational leadership",
+        icon: "📚",
+        departments: [
+          {
+            name: "Department of Teacher Education",
+            description: "Professional teacher preparation",
+            courseCount: 5,
+            courses: [
+              { code: "EDUC101", name: "Foundations of Education", level: "undergraduate" },
+              { code: "EDUC102", name: "Psychology of Learning", level: "undergraduate" },
+              { code: "EDUC201", name: "Curriculum Development", level: "undergraduate" },
+              { code: "EDUC301", name: "Educational Leadership", level: "graduate" },
+              { code: "EDUC401", name: "Education Research", level: "postgraduate" }
+            ]
+          }
+        ]
+      }
     ],
     landmarks: [
       { name: "Integrated Farm Laboratory", desc: "An expansive fully active farm testing crop resiliency variants." },
@@ -211,20 +620,54 @@ const CAMPUSES_DATA: Campus[] = [
     coordinate: { x: 44, y: 55 },
     region: "Northern & Central"
   },
-  { 
-    name: "MSU-Sulu", 
-    slug: "msu-sulu", 
-    location: "Jolo, Sulu", 
+  {
+    name: "MSU-Sulu",
+    slug: "msu-sulu",
+    location: "Jolo, Sulu",
     founded: 1974,
     tagline: "The Vanguard of Sulu Archipelago Heritage",
     description: "Located in the historic town of Jolo, MSU Sulu is committed to academic empowerment, preserving the profound maritime arts of the Tausūg people, and cultivating resilient public educators for the island provinces.",
     stats: { students: "6,000+", courses: "36+", faculty: "280+", employmentRate: "82%" },
     specialties: ["Maritime Trade Sciences", "Islamic Legal Studies", "Public Administration", "Tausug Cultural Heritage"],
     colleges: [
-      "College of Education",
-      "College of Arts and Sciences",
-      "College of Fisheries and Forestry",
-      "Institute of Islamic Shariah"
+      {
+        name: "College of Fisheries and Forestry",
+        description: "Marine fisheries and forest resources",
+        icon: "🐟",
+        departments: [
+          {
+            name: "Department of Fisheries",
+            description: "Maritime fishing technologies",
+            courseCount: 5,
+            courses: [
+              { code: "FISH101", name: "Maritime Fishing", level: "undergraduate" },
+              { code: "FISH102", name: "Fishing Vessel Ops", level: "undergraduate" },
+              { code: "FISH201", name: "Deep Sea Fishing", level: "undergraduate" },
+              { code: "FISH301", name: "Advanced Fisheries", level: "graduate" },
+              { code: "FISH401", name: "Fisheries Research", level: "postgraduate" }
+            ]
+          }
+        ]
+      },
+      {
+        name: "Institute of Islamic Shariah",
+        description: "Islamic law and Sharia studies",
+        icon: "📖",
+        departments: [
+          {
+            name: "Department of Islamic Law",
+            description: "Sharia law and jurisprudence",
+            courseCount: 5,
+            courses: [
+              { code: "SHARIAH101", name: "Islamic Law Principles", level: "undergraduate" },
+              { code: "SHARIAH102", name: "Family Law (Islamic)", level: "undergraduate" },
+              { code: "SHARIAH201", name: "Commercial Sharia", level: "undergraduate" },
+              { code: "SHARIAH301", name: "Advanced Jurisprudence", level: "graduate" },
+              { code: "SHARIAH401", name: "Islamic Law Research", level: "postgraduate" }
+            ]
+          }
+        ]
+      }
     ],
     landmarks: [
       { name: "Mount Tumantangis Vistas", desc: "The legendary mountain of tears which acts as a sacred weather beacon for Sulu sailors." },
@@ -237,19 +680,35 @@ const CAMPUSES_DATA: Campus[] = [
     coordinate: { x: 25, y: 72 },
     region: "Zamboanga & Sulu"
   },
-  { 
-    name: "MSU-Buug", 
-    slug: "msu-buug", 
-    location: "Buug, Zamboanga Sibugay", 
+  {
+    name: "MSU-Buug",
+    slug: "msu-buug",
+    location: "Buug, Zamboanga Sibugay",
     founded: 1971,
     tagline: "Agro-forestry and Community Entrepreneurship",
     description: "MSU Buug is a recognized center of development nestled in the verdant soils of Zamboanga Sibugay, empowering independent community farmers and micro-enterprises with top-tier technical and managerial skills.",
     stats: { students: "4,500+", courses: "26+", faculty: "190+", employmentRate: "86%" },
     specialties: ["Forest Hydrology", "Cooperative Farm Management", "Small Business Economics"],
     colleges: [
-      "College of Agriculture and Forestry",
-      "College of Business Administration and Accountancy",
-      "College of Social Sciences"
+      {
+        name: "College of Agriculture and Forestry",
+        description: "Agroforestry and sustainable land use",
+        icon: "🌾",
+        departments: [
+          {
+            name: "Department of Agroforestry",
+            description: "Integrated farm and forest systems",
+            courseCount: 5,
+            courses: [
+              { code: "AFORE101", name: "Agroforestry Systems", level: "undergraduate" },
+              { code: "AFORE102", name: "Soil Conservation", level: "undergraduate" },
+              { code: "AFORE201", name: "Forest Hydrology", level: "undergraduate" },
+              { code: "AFORE301", name: "Advanced Agroforestry", level: "graduate" },
+              { code: "AFORE401", name: "Agroforestry Research", level: "postgraduate" }
+            ]
+          }
+        ]
+      }
     ],
     landmarks: [
       { name: "The Bamboo Pavilion", desc: "An beautiful open-air bamboo structure demonstrating sustainable local building arts." },
@@ -262,19 +721,45 @@ const CAMPUSES_DATA: Campus[] = [
     coordinate: { x: 34, y: 44 },
     region: "Zamboanga & Sulu"
   },
-  { 
-    name: "MSU-Lanao National Agricultural College (MSU-LNAC)", 
-    slug: "msu-lnac", 
-    location: "Lumbatan, Lanao del Sur", 
+  {
+    name: "MSU-Lanao National Agricultural College (MSU-LNAC)",
+    slug: "msu-lnac",
+    location: "Lumbatan, Lanao del Sur",
     founded: 1969,
     tagline: "Cultivating Agricultural Roots & Rural Prosperity",
     description: "Dedicated to the sustainable modernization of agriculture and forestry in Lanao del Sur. It equips students with hands-on competencies in organic cultivation, animal husbandry, and watershed management.",
     stats: { students: "3,100+", courses: "18+", faculty: "125+", employmentRate: "83%" },
     specialties: ["Agronomy & Crop Science", "Animal Science", "Forestry Management", "Secondary Education"],
     colleges: [
-      "Department of Agriculture",
-      "Department of Teacher Education",
-      "Department of Industrial Technology"
+      {
+        name: "College of Agriculture and Forestry",
+        description: "Agricultural sciences and rural development",
+        icon: "🌾",
+        departments: [
+          {
+            name: "Department of Agronomy",
+            description: "Crop science and farming",
+            courseCount: 4,
+            courses: [
+              { code: "AGRO101", name: "Crop Science", level: "undergraduate" },
+              { code: "AGRO102", name: "Organic Farming", level: "undergraduate" },
+              { code: "AGRO201", name: "Advanced Crop Management", level: "undergraduate" },
+              { code: "AGRO301", name: "Agriculture Research", level: "graduate" }
+            ]
+          },
+          {
+            name: "Department of Animal Science",
+            description: "Livestock and animal husbandry",
+            courseCount: 4,
+            courses: [
+              { code: "ANIM101", name: "Animal Biology", level: "undergraduate" },
+              { code: "ANIM102", name: "Livestock Management", level: "undergraduate" },
+              { code: "ANIM201", name: "Veterinary Science Intro", level: "undergraduate" },
+              { code: "ANIM301", name: "Advanced Animal Science", level: "graduate" }
+            ]
+          }
+        ]
+      }
     ],
     landmarks: [
       { name: "LNAC Demonstration Farms", desc: "Acres of organic crop trials and high-tech rice farming fields." },
@@ -287,19 +772,44 @@ const CAMPUSES_DATA: Campus[] = [
     coordinate: { x: 47, y: 35 },
     region: "Northern & Central"
   },
-  { 
-    name: "MSU-Lanao National College of Arts and Trades (MSU-LNCAT)", 
-    slug: "msu-lncat", 
-    location: "Marawi City, Lanao del Sur", 
+  {
+    name: "MSU-Lanao National College of Arts and Trades (MSU-LNCAT)",
+    slug: "msu-lncat",
+    location: "Marawi City, Lanao del Sur",
     founded: 1968,
     tagline: "Mastering Craftsmanship & Industrial Innovation",
     description: "Co-located in the cultural landscape of Marawi City, LNCAT focuses on vocational masteries, electronic design, and technical engineering crafts to empower local artisans and build the industrial workforce of the region.",
     stats: { students: "2,800+", courses: "15+", faculty: "115+", employmentRate: "87%" },
     specialties: ["Mechanical Crafts", "Civil Engineering & Masonry", "Culinary Arts & Tech", "Applied Electronics"],
     colleges: [
-      "Division of Automotive Technology",
-      "Division of Electrical Engineering Tech",
-      "Division of Hospitality Sciences"
+      {
+        name: "Division of Technical Trades",
+        description: "Mechanical and electrical trades training",
+        icon: "⚙️",
+        departments: [
+          {
+            name: "Department of Automotive Technology",
+            description: "Vehicle repair and maintenance",
+            courseCount: 4,
+            courses: [
+              { code: "AUTO101", name: "Automotive Fundamentals", level: "undergraduate" },
+              { code: "AUTO102", name: "Engine Mechanics", level: "undergraduate" },
+              { code: "AUTO201", name: "Automotive Electronics", level: "undergraduate" },
+              { code: "AUTO301", name: "Advanced Diagnostics", level: "graduate" }
+            ]
+          },
+          {
+            name: "Department of Electrical Engineering Tech",
+            description: "Electrical installations and systems",
+            courseCount: 3,
+            courses: [
+              { code: "ELEC101", name: "Electrical Installation", level: "undergraduate" },
+              { code: "ELEC102", name: "Wiring & Safety", level: "undergraduate" },
+              { code: "ELEC201", name: "Industrial Electrical", level: "undergraduate" }
+            ]
+          }
+        ]
+      }
     ],
     landmarks: [
       { name: "LNCAT Advanced Workshops", desc: "Precision machining areas equipped with modern tools and diagnostic benches." },
@@ -312,19 +822,50 @@ const CAMPUSES_DATA: Campus[] = [
     coordinate: { x: 53, y: 33 },
     region: "Northern & Central"
   },
-  { 
-    name: "MSU-Maigo School of Arts and Trades (MSU-MSAT)", 
-    slug: "msu-msat", 
-    location: "Maigo, Lanao del Norte", 
+  {
+    name: "MSU-Maigo School of Arts and Trades (MSU-MSAT)",
+    slug: "msu-msat",
+    location: "Maigo, Lanao del Norte",
     founded: 1969,
     tagline: "Engine of Practical Engineering & Vocational Arts",
     description: "A highly specialized hub in Lanao del Norte dedicated to technical education, robotics-level mechanics, automotive intelligence, and drafting arts. MSAT empowers youths with professional-level trade certifications.",
     stats: { students: "2,400+", courses: "12+", faculty: "98+", employmentRate: "90%" },
     specialties: ["Automotive Engineering", "Electrical Installation Technology", "Applied Graphic Arts", "Machining Crafts"],
     colleges: [
-      "Department of Trades Technology",
-      "Department of Teacher Education",
-      "Department of Applied Arts"
+      {
+        name: "Department of Trades Technology",
+        description: "Mechanical and technical trades",
+        icon: "⚙️",
+        departments: [
+          {
+            name: "Department of Machining",
+            description: "Precision machining and metalwork",
+            courseCount: 3,
+            courses: [
+              { code: "MACH101", name: "Machine Tool Operation", level: "undergraduate" },
+              { code: "MACH102", name: "CNC Programming", level: "undergraduate" },
+              { code: "MACH201", name: "Advanced Machining", level: "undergraduate" }
+            ]
+          }
+        ]
+      },
+      {
+        name: "Department of Applied Arts",
+        description: "Design and creative arts training",
+        icon: "🎨",
+        departments: [
+          {
+            name: "Department of Graphic Design",
+            description: "Visual design and digital arts",
+            courseCount: 3,
+            courses: [
+              { code: "GRAPH101", name: "Design Fundamentals", level: "undergraduate" },
+              { code: "GRAPH102", name: "Digital Design Software", level: "undergraduate" },
+              { code: "GRAPH201", name: "Advanced Design Projects", level: "undergraduate" }
+            ]
+          }
+        ]
+      }
     ],
     landmarks: [
       { name: "The MSAT Engine Dyno Lab", desc: "State-of-the-art diagnostic setup for modern computerized vehicle tuning." },
@@ -510,6 +1051,159 @@ interface CampusesExplorerProps {
   selectedCampus: any | null;
   setSelectedCampus: (campus: any | null) => void;
   setView: (view: 'home' | 'explorer' | 'about' | 'dashboard') => void;
+}
+
+function CollegeTree({ colleges }: { colleges: College[] }) {
+  const [expandedColleges, setExpandedColleges] = useState<Set<string>>(new Set());
+  const [expandedDepts, setExpandedDepts] = useState<Set<string>>(new Set());
+
+  const toggleCollege = (collegeName: string) => {
+    const newSet = new Set(expandedColleges);
+    if (newSet.has(collegeName)) {
+      newSet.delete(collegeName);
+    } else {
+      newSet.add(collegeName);
+    }
+    setExpandedColleges(newSet);
+  };
+
+  const toggleDept = (deptKey: string) => {
+    const newSet = new Set(expandedDepts);
+    if (newSet.has(deptKey)) {
+      newSet.delete(deptKey);
+    } else {
+      newSet.add(deptKey);
+    }
+    setExpandedDepts(newSet);
+  };
+
+  const levelColor = (level: string) => {
+    switch (level) {
+      case 'undergraduate': return 'text-blue-400';
+      case 'graduate': return 'text-purple-400';
+      case 'postgraduate': return 'text-pink-400';
+      default: return 'text-gray-400';
+    }
+  };
+
+  const levelLabel = (level: string) => {
+    switch (level) {
+      case 'undergraduate': return 'UG';
+      case 'graduate': return 'GR';
+      case 'postgraduate': return 'PG';
+      default: return 'OTH';
+    }
+  };
+
+  return (
+    <div className="space-y-2">
+      {colleges.map((college) => {
+        const isExpanded = expandedColleges.has(college.name);
+        const totalCourses = college.departments.reduce((sum, dept) => sum + dept.courseCount, 0);
+
+        return (
+          <div key={college.name} className="space-y-1">
+            <motion.button
+              onClick={() => toggleCollege(college.name)}
+              className="w-full text-left p-3 rounded-xl bg-white/[0.03] border border-white/10 hover:bg-white/[0.06] hover:border-white/20 transition-all flex items-center gap-2 group"
+              whileHover={{ scale: 1.01 }}
+              whileTap={{ scale: 0.99 }}
+            >
+              <motion.div
+                animate={{ rotate: isExpanded ? 90 : 0 }}
+                transition={{ duration: 0.2 }}
+              >
+                <ChevronRight size={14} className="text-amber-500" />
+              </motion.div>
+              <span className="text-sm">{college.icon || '📚'}</span>
+              <div className="flex-1 text-left">
+                <p className="text-xs font-bold text-white">{college.name}</p>
+                <p className="text-[10px] text-gray-500">{college.description}</p>
+              </div>
+              <span className={`text-[10px] font-mono px-2 py-0.5 rounded bg-white/5 border border-white/10 text-gray-400 whitespace-nowrap`}>
+                {college.departments.length} depts
+              </span>
+              <span className={`text-[10px] font-mono px-2 py-0.5 rounded bg-white/5 border border-white/10 text-amber-400 whitespace-nowrap`}>
+                {totalCourses} courses
+              </span>
+            </motion.button>
+
+            <AnimatePresence>
+              {isExpanded && (
+                <motion.div
+                  initial={{ opacity: 0, height: 0 }}
+                  animate={{ opacity: 1, height: 'auto' }}
+                  exit={{ opacity: 0, height: 0 }}
+                  className="pl-4 space-y-1 border-l border-white/10"
+                >
+                  {college.departments.map((dept, dIdx) => {
+                    const deptKey = `${college.name}-${dept.name}`;
+                    const isDeptExpanded = expandedDepts.has(deptKey);
+
+                    return (
+                      <div key={deptKey} className="space-y-1">
+                        <motion.button
+                          onClick={() => toggleDept(deptKey)}
+                          className="w-full text-left p-2.5 rounded-lg bg-white/[0.02] border border-white/5 hover:bg-white/[0.05] hover:border-white/15 transition-all flex items-center gap-2"
+                          whileHover={{ scale: 1.01 }}
+                          whileTap={{ scale: 0.99 }}
+                        >
+                          <motion.div
+                            animate={{ rotate: isDeptExpanded ? 90 : 0 }}
+                            transition={{ duration: 0.2 }}
+                          >
+                            <ChevronRight size={12} className="text-amber-400/60" />
+                          </motion.div>
+                          <div className="flex-1 text-left min-w-0">
+                            <p className="text-[11px] font-semibold text-gray-300 truncate">{dept.name}</p>
+                            <p className="text-[9px] text-gray-600">{dept.description}</p>
+                          </div>
+                          <span className="text-[9px] text-gray-500 whitespace-nowrap font-mono">{dept.courseCount} courses</span>
+                        </motion.button>
+
+                        <AnimatePresence>
+                          {isDeptExpanded && (
+                            <motion.div
+                              initial={{ opacity: 0, height: 0 }}
+                              animate={{ opacity: 1, height: 'auto' }}
+                              exit={{ opacity: 0, height: 0 }}
+                              className="pl-3 space-y-1 border-l border-white/5 max-h-80 overflow-y-auto"
+                            >
+                              {dept.courses.map((course) => (
+                                <motion.div
+                                  key={course.code}
+                                  initial={{ opacity: 0, x: -10 }}
+                                  animate={{ opacity: 1, x: 0 }}
+                                  className="p-2 rounded-lg bg-white/[0.01] border border-white/5 flex items-start gap-2 hover:border-white/10 transition-all"
+                                >
+                                  <span className={`text-[9px] font-mono font-bold ${levelColor(course.level)} whitespace-nowrap pt-0.5 min-w-max`}>
+                                    {course.code}
+                                  </span>
+                                  <div className="flex-1 min-w-0">
+                                    <p className="text-[10px] font-medium text-gray-300 line-clamp-1">{course.name}</p>
+                                    {course.description && (
+                                      <p className="text-[8px] text-gray-600 line-clamp-1">{course.description}</p>
+                                    )}
+                                  </div>
+                                  <span className={`text-[8px] font-mono font-bold whitespace-nowrap pt-0.5 px-1.5 py-0.5 rounded bg-white/5 border border-white/10 ${levelColor(course.level)}`}>
+                                    {levelLabel(course.level)}
+                                  </span>
+                                </motion.div>
+                              ))}
+                            </motion.div>
+                          )}
+                        </AnimatePresence>
+                      </div>
+                    );
+                  })}
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
+        );
+      })}
+    </div>
+  );
 }
 
 export function CampusesExplorer({ userSettings, selectedCampus, setSelectedCampus, setView }: CampusesExplorerProps) {
@@ -1772,21 +2466,13 @@ export function CampusesExplorer({ userSettings, selectedCampus, setSelectedCamp
                           ))}
                         </div>
 
-                        {/* List of colleges */}
-                        <div className="pt-3 space-y-2">
+                        {/* List of colleges - hierarchical tree */}
+                        <div className="pt-3 space-y-2 max-h-[500px] flex flex-col overflow-hidden">
                           <h4 className="text-[10px] font-mono font-bold tracking-widest text-gray-500 uppercase flex items-center gap-1.5 border-b border-white/5 pb-1.5">
-                            <GraduationCap size={13} className="text-amber-500" /> Primary Deployed Colleges
+                            <GraduationCap size={13} className="text-amber-500" /> Academic Structure
                           </h4>
-                          <div className="space-y-1">
-                            {resolvedSelectedCampus.colleges.slice(0, 4).map((coll, cIdx) => (
-                              <div key={cIdx} className="flex items-center gap-2 text-xs text-gray-400">
-                                <span className="w-1 h-1 rounded-full bg-amber-500" />
-                                <span className="truncate">{coll}</span>
-                              </div>
-                            ))}
-                            {resolvedSelectedCampus.colleges.length > 4 && (
-                              <p className="text-[10px] text-gray-500 pl-3">and {resolvedSelectedCampus.colleges.length - 4} other primary academic colleges...</p>
-                            )}
+                          <div className="flex-1 overflow-y-auto pr-2">
+                            <CollegeTree colleges={resolvedSelectedCampus.colleges} />
                           </div>
                         </div>
                       </div>
